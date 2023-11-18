@@ -18,3 +18,27 @@ body {
 		@include size(100%);	
 	}
 }
+
+[route] {
+	@include size(100%);
+
+	@keyframes scroll {
+		100% {
+			background-position: 0px -400%;
+		}
+	}
+
+	&[route="Home"], &[route="Game"] {
+		background-image: url("https://xn--actionouvrit-jebd.fr/img/pattern/pattern-3.svg");
+		animation: scroll 100s linear infinite;
+	}
+
+	&[route="Home"] {
+		display: flex;
+		justify-content: center;
+		> .wrapper {
+			display: flex;
+		}
+	}
+
+}

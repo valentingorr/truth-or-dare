@@ -1,4 +1,6 @@
-import React from "react";
+import React, {
+	useEffect
+} from "react";
 import { createRoot } from "react-dom/client";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -14,17 +16,30 @@ import Navigation from "./routes/index.jsx";
 
 import "./style/style.scss";
 
+import { io } from "socket.io-client";
+const socket = io({
+	auth: {
+		token: sessionToken
+	}
+});
+
 const store = configureStore({
 	reducer: reducers,
-	devTools: mode === "development"
+	devTools: ( mode === "development" )
 });
 
 const App = () => {
 
 	const user = useSelector(state => state.user);
 
+	useEffect(() => {
+		socket.on("connect_error", err => {
+			console.log("Can't connect to websocket server,", err.message);
+		});
+	}, []);
+
 	return (
-		<CONTEXT.default {...{}}>
+		<CONTEXT.default {...{ socket }}>
 			<Routes>
 				{
 					Navigation.routes.map(route => (
