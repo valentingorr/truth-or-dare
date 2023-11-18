@@ -1,0 +1,20 @@
+@import "config";
+
+* {
+	text-decoration: inherit;
+	outline: none;
+	border: none;
+	box-sizing: border-box;
+	align-items: center;
+	list-style: none;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	height: 100dvh;
+	#root {
+		@include size(100%);	
+	}
+}

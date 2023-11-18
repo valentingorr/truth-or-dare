@@ -1,3 +1,6 @@
+# bundle
+public/static/bundle/
+
 # Logs
 logs
 *.log
